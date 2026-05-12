@@ -1,0 +1,14 @@
+# Dev server
+node_modules/
+.cache/
+
+# Claude Code internals
+.claude/
+
+# OS files
+desktop.ini
+.DS_Store
+Thumbs.db
+
+# Uploads (user files, not source)
+uploads/

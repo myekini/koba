@@ -1,0 +1,78 @@
+/* ═══════════════════════════════════════════════════
+   UBA Smart Money — Page-level Styles
+   ═══════════════════════════════════════════════════ */
+
+/* ─── UBA Home ─── */
+.uba-home-content {
+  display: flex; flex-direction: column;
+  gap: 16px;
+  padding: 16px 0 0;
+}
+
+/* ─── Overview ─── */
+#sm-page-overview {
+  padding-top: 20px;
+}
+.overview-section { margin-bottom: 24px; }
+.overview-section:last-child { margin-bottom: 0; }
+
+/* ─── Coach ─── */
+#sm-page-coach {
+  flex-direction: column;
+}
+/* Extra bottom padding so last message isn't hidden behind sticky input */
+.chat-window-end { height: 8px; }
+
+/* ─── Goals ─── */
+#sm-page-goals { padding-top: 20px; }
+.goals-page-header {
+  padding: 0 var(--page-px);
+  margin-bottom: 16px;
+}
+.goals-page-title { font-size: 18px; font-weight: 600; color: var(--uba-black); }
+.goals-page-sub   { font-size: 13px; color: var(--color-text-muted); margin-top: 2px; }
+
+/* ─── Insights ─── */
+#sm-page-insights { padding-top: 20px; }
+.insights-page-header {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--page-px);
+  margin-bottom: 16px;
+}
+.insights-page-title { font-size: 18px; font-weight: 600; color: var(--uba-black); }
+.insights-section    { margin-bottom: 20px; }
+
+/* ─── Settings ─── */
+#sm-page-settings {
+  padding-bottom: 20px;
+}
+
+/* ─── UBA Home: "For You" label ─── */
+.for-you-label {
+  padding: 0 var(--page-px);
+}
+.for-you-label span {
+  font-size: 13px; font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+
+/* ─── Spacing helpers used across pages ─── */
+.mt-4  { margin-top: 4px; }
+.mt-8  { margin-top: 8px; }
+.mt-12 { margin-top: 12px; }
+.mt-16 { margin-top: 16px; }
+.mt-20 { margin-top: 20px; }
+.mt-24 { margin-top: 24px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-20 { margin-bottom: 20px; }
+.px-page { padding-left: var(--page-px); padding-right: var(--page-px); }
+
+/* ─── UBA Home — Section header (For You, etc.) ─── */
+.home-section-hd {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 4px var(--page-px) 8px;
+}
+.home-section-title { font-size: 15px; font-weight: 600; color: var(--uba-black); }
