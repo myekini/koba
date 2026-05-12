@@ -107,15 +107,21 @@ img { display: block; max-width: 100%; }
 .status-icons svg { display: block; }
 
 /* ─── Screens ─── */
-/* Each screen is a self-contained scroll container */
 .screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+/* Scrollable content area inside each screen */
+.screen-body {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
-  background: var(--color-bg);
-  /* bottom padding accounts for fixed UBA nav (72px) */
-  padding-bottom: 72px;
   position: relative;
+  padding-bottom: 16px;
 }
 .screen.hidden { display: none !important; }
 
