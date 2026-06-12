@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UBA Smart Money Insights</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c7c6c6",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dadada",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#e2dfde",
+                        "inverse-on-surface": "#f1f1f1",
+                        "on-surface": "#1a1c1c",
+                        "on-primary-container": "#ffe5e2",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-tint": "#c00010",
+                        "primary-container": "#d31118",
+                        "outline-variant": "#e7bdb7",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "secondary-fixed": "#e5e2e1",
+                        "tertiary-fixed": "#e3e2e2",
+                        "on-primary-fixed": "#410002",
+                        "surface-bright": "#f9f9f9",
+                        "on-tertiary-container": "#ecebeb",
+                        "inverse-surface": "#2f3131",
+                        "outline": "#926f6a",
+                        "surface-variant": "#e2e2e2",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-surface-variant": "#5d3f3c",
+                        "secondary": "#5f5e5e",
+                        "surface-container-high": "#e8e8e8",
+                        "on-secondary-container": "#636262",
+                        "on-secondary-fixed-variant": "#474746",
+                        "surface": "#f9f9f9",
+                        "on-tertiary-fixed-variant": "#464747",
+                        "primary": "#a8000c",
+                        "surface-container": "#eeeeee",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#ffdad5",
+                        "on-primary-fixed-variant": "#930009",
+                        "tertiary-container": "#6a6a6a",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-container-low": "#f3f3f3",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#1b1b1c",
+                        "tertiary": "#525252",
+                        "error-container": "#ffdad6",
+                        "background": "#f9f9f9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px",
+                        "2xl": "1.5rem"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "gutter": "16px",
+                        "stack-lg": "24px",
+                        "unit": "8px",
+                        "stack-sm": "8px",
+                        "section-gap": "40px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-md": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .grid-bg {
+            background-image: linear-gradient(to right, #e5e2e1 1px, transparent 1px), linear-gradient(to bottom, #e5e2e1 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body-md antialiased pb-24 md:pb-0">
+<!-- Top App Bar -->
+<header class="w-full top-0 sticky bg-surface dark:bg-surface-dim z-40">
+<div class="flex justify-between items-center px-gutter py-unit w-full max-w-[1200px] mx-auto">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A close-up headshot of a confident professional smiling gently, styled in a modern, clean lighting setup to match a minimalist UI profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASQQPM1n9WjTIB8lr0yska9iTtZ73E56lBCbrHciUnTLlwzM8Vjy1DN5JGjvIp0QRUcqRId95U7LjunLgEgDb-BH9v9lHY2l8ZN0VqGHYyV8LNyKabImuwP2McIVkyAR1L-hNdvNRcQc7NXjivy7C5EEqB0rjDLla_8TpG2wHcrh-xhyBFEKrt74fIz-HHO1HENI2JIxFf1YoAHdtjQHFw36oiP-kLOT9Rv7x4qEGZwSE5b31T3uWvf-FMipOlg3-N07OoMefgwyLN"/>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">UBA</span>
+</div>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-primary dark:text-primary-fixed-dim hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[1200px] mx-auto px-gutter md:px-container-padding relative grid-bg min-h-screen pt-4">
+<!-- Header & Nav -->
+<div class="mb-stack-lg">
+<h1 class="font-display-lg text-display-lg text-on-background mb-4">Smart Money<br/>Insights</h1>
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md whitespace-nowrap bg-surface">Overview</button>
+<button class="px-6 py-2 rounded-full bg-[#fbd400] text-[#1a1c1c] font-label-md text-label-md font-bold whitespace-nowrap shadow-sm">Insights</button>
+<button class="px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant font-label-md text-label-md whitespace-nowrap bg-surface">Budgets</button>
+</div>
+</div>
+<!-- Month Selector -->
+<div class="flex items-center justify-between bg-surface rounded-full px-4 py-2 mb-stack-lg border border-surface-variant shadow-sm w-max mx-auto md:mx-0">
+<button class="text-on-surface-variant hover:text-on-surface p-1"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<span class="font-headline-sm text-headline-sm text-on-surface px-4">May 2026</span>
+<button class="text-on-surface-variant hover:text-on-surface p-1"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-stack-lg">
+<!-- Left Column: Spending Breakdown -->
+<div class="md:col-span-5 lg:col-span-4 flex flex-col gap-stack-md">
+<div class="bg-surface rounded-2xl p-6 border border-surface-variant shadow-sm flex flex-col h-full">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-6">Spending Breakdown</h2>
+<div class="flex flex-col gap-5 flex-grow">
+<!-- Food -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary block"></span> Food
+                                </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">45%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<!-- Transport -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#f2994a] block"></span> Transport
+                                </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">25%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-[#f2994a] h-full rounded-full" style="width: 25%"></div>
+</div>
+</div>
+<!-- Utilities -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-[#2d9cdb] block"></span> Utilities
+                                </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">15%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-[#2d9cdb] h-full rounded-full" style="width: 15%"></div>
+</div>
+</div>
+<!-- Shopping -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-tertiary block"></span> Shopping
+                                </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">10%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full" style="width: 10%"></div>
+</div>
+</div>
+<!-- Others -->
+<div>
+<div class="flex justify-between mb-2">
+<span class="font-label-md text-label-md text-on-surface flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-surface-variant block"></span> Others
+                                </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">5%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-surface-variant h-full rounded-full" style="width: 5%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Insight Cards -->
+<div class="md:col-span-7 lg:col-span-8 flex flex-col gap-stack-md">
+<!-- Food Spike Insight -->
+<div class="bg-[#fce4ec] rounded-2xl p-6 relative overflow-hidden border border-outline-variant/30">
+<div class="absolute -right-10 -bottom-10 opacity-20 pointer-events-none">
+<span class="material-symbols-outlined text-[150px] text-primary">restaurant</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-4 text-primary">
+<span class="material-symbols-outlined bg-white p-2 rounded-full shadow-sm">trending_up</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-background">Food spending spike</h3>
+</div>
+<p class="font-body-lg text-body-lg text-on-background mb-6 max-w-md">
+                            You've spent <strong class="text-primary font-bold">34% more</strong> on Food this month compared to your 6-month average. Most of this went to "Quick Service Restaurants".
+                        </p>
+<button class="bg-surface text-on-surface font-label-md text-label-md px-6 py-3 rounded-full inline-flex items-center gap-2 hover:bg-surface-container transition-colors shadow-sm border border-surface-variant">
+<span class="material-symbols-outlined text-sm">chat_bubble</span>
+                            Discuss with Coach
+                        </button>
+</div>
+</div>
+<!-- Savings Insight -->
+<div class="bg-[#e8f5e9] rounded-2xl p-6 relative overflow-hidden border border-[#a5d6a7]/50">
+<div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<div class="flex items-center gap-3 mb-2 text-[#2e7d32]">
+<span class="material-symbols-outlined bg-white p-2 rounded-full shadow-sm">savings</span>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-background">On track for vacation goal</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                                You are consistently saving 20% of your income. Great job!
+                            </p>
+</div>
+<button class="bg-[#2e7d32] text-white font-label-md text-label-md px-6 py-3 rounded-full hover:bg-[#1b5e20] transition-colors shadow-sm whitespace-nowrap">
+                            View Goal
+                        </button>
+</div>
+</div>
+<!-- Call to Action (Yellow like ref) -->
+<button class="w-full bg-[#fbd400] rounded-full p-4 flex items-center justify-between hover:bg-[#f5c300] transition-colors shadow-sm mt-auto">
+<span class="font-headline-sm text-headline-sm text-[#1a1c1c] ml-4">Ask AI about my spending</span>
+<div class="w-10 h-10 bg-[#1a1c1c] rounded-full flex items-center justify-center text-white">
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface-container-lowest dark:bg-surface-container-lowest shadow-[0_-4px_20px_0px_rgba(0,0,0,0.04)] md:hidden">
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-4 py-2 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-4 py-2 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-label-md text-label-md mt-1">Payments</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary dark:text-secondary-fixed-dim px-4 py-2 hover:bg-surface-container dark:hover:bg-surface-container-high rounded-xl" href="#">
+<span class="material-symbols-outlined">credit_card</span>
+<span class="font-label-md text-label-md mt-1">Cards</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-xl px-4 py-2 transform scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md mt-1">Settings</span>
+</a>
+</nav>
+</body></html>

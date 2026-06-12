@@ -1,6 +1,14 @@
-# Dev server
+# Dev server & dependencies
 node_modules/
+/node_modules
 .cache/
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
 # Claude Code internals
 .claude/
@@ -9,6 +17,36 @@ node_modules/
 desktop.ini
 .DS_Store
 Thumbs.db
+*.pem
 
 # Uploads (user files, not source)
 uploads/
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+.pnpm-debug.log*
+
+# env files
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# local smoke-test artifacts
+smoke-shots/
+smoke-test.mjs
