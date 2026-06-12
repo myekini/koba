@@ -49,4 +49,4 @@ next-env.d.ts
 
 # local smoke-test artifacts
 smoke-shots/
-smoke-test.mjs
+smoke-*.mjs

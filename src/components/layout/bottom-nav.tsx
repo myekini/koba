@@ -7,9 +7,10 @@ export type ViewType = "home" | "smartmoney";
 interface BottomNavProps {
   currentView: ViewType;
   onNavigate: (view: ViewType) => void;
+  variant?: "classic" | "ink";
 }
 
-export function BottomNav({ currentView, onNavigate }: BottomNavProps) {
+export function BottomNav({ currentView, onNavigate, variant = "classic" }: BottomNavProps) {
   const navItems = [
     { id: "home", label: "Home", icon: Home },
     { id: "transfers", label: "Transfers", icon: ArrowRightLeft, disabled: true },
@@ -17,8 +18,16 @@ export function BottomNav({ currentView, onNavigate }: BottomNavProps) {
     { id: "smartmoney", label: "KOBA", icon: Sparkles },
   ];
 
+  const isInk = variant === "ink";
+
   return (
-    <nav className="shrink-0 border-t border-zinc-200/70 bg-white/90 px-4 pt-2 pb-[max(env(safe-area-inset-bottom),0.75rem)] backdrop-blur-lg dark:border-zinc-800/70 dark:bg-zinc-900/90 lg:pb-6 z-40 select-none">
+    <nav
+      className={`shrink-0 px-4 pt-2 pb-[max(env(safe-area-inset-bottom),0.75rem)] lg:pb-6 z-40 select-none ${
+        isInk
+          ? "border-t-2 border-ink/10 bg-paper font-ink"
+          : "border-t border-zinc-200/70 bg-white/90 backdrop-blur-lg dark:border-zinc-800/70 dark:bg-zinc-900/90"
+      }`}
+    >
       <div className="flex items-center justify-between">
         {navItems.map((item) => {
           const Icon = item.icon;
@@ -30,21 +39,33 @@ export function BottomNav({ currentView, onNavigate }: BottomNavProps) {
               onClick={() => !item.disabled && onNavigate(item.id as ViewType)}
               className={`relative flex min-h-12 min-w-16 flex-col items-center justify-center gap-1 transition-colors ${
                 item.disabled
-                  ? "cursor-not-allowed text-zinc-300 dark:text-zinc-700"
+                  ? isInk
+                    ? "cursor-not-allowed text-ink/25"
+                    : "cursor-not-allowed text-zinc-300 dark:text-zinc-700"
                   : isActive
-                    ? "text-primary cursor-pointer"
-                    : "cursor-pointer text-zinc-400 hover:text-zinc-700 dark:text-zinc-500 dark:hover:text-zinc-300"
+                    ? isInk
+                      ? "text-ink cursor-pointer"
+                      : "text-primary cursor-pointer"
+                    : isInk
+                      ? "cursor-pointer text-ink/40 hover:text-ink"
+                      : "cursor-pointer text-zinc-400 hover:text-zinc-700 dark:text-zinc-500 dark:hover:text-zinc-300"
               }`}
             >
               {isActive && (
                 <motion.span
                   layoutId="nav-indicator"
-                  className="absolute -top-2 h-0.5 w-8 rounded-full bg-primary"
+                  className={`absolute -top-2 h-0.5 w-8 rounded-full ${
+                    isInk ? "bg-ink" : "bg-primary"
+                  }`}
                   transition={{ type: "spring", stiffness: 400, damping: 32 }}
                 />
               )}
               <Icon className="h-5 w-5" strokeWidth={isActive ? 2.4 : 2} />
-              <span className="text-[11px] font-medium tracking-tight">
+              <span
+                className={`text-[11px] tracking-tight ${
+                  isInk ? (isActive ? "font-bold" : "font-semibold") : "font-medium"
+                }`}
+              >
                 {item.label}
               </span>
             </button>

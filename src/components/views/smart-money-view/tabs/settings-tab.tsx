@@ -6,6 +6,7 @@ import {
   ChevronRight,
   FileText,
   Moon,
+  Palette,
   RefreshCw,
   Sparkles,
 } from "lucide-react";
@@ -14,7 +15,7 @@ import { useSmartMoney } from "@/lib/smart-money-context";
 import { formatNaira } from "@/lib/utils";
 
 export function SettingsTab() {
-  const { state, derived, toggleSetting } = useSmartMoney();
+  const { state, derived, toggleSetting, setDesign } = useSmartMoney();
   const rule = state.settings.autoSaveRule;
   const ruleGoal = rule ? state.goals.find((g) => g.id === rule.goalId) : null;
 
@@ -63,6 +64,32 @@ export function SettingsTab() {
           />
         </SettingsGroup>
       )}
+
+      {/* Design style */}
+      <SettingsGroup title="Appearance">
+        <SettingsRow
+          icon={<Palette className="h-4.5 w-4.5" />}
+          title="Design style"
+          subtitle="Switch between app designs"
+          trailing={
+            <div className="flex rounded-full border border-zinc-200 bg-zinc-50 p-0.5 dark:border-zinc-700 dark:bg-zinc-950">
+              {(["classic", "illustrative"] as const).map((d) => (
+                <button
+                  key={d}
+                  onClick={() => setDesign(d)}
+                  className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer ${
+                    state.design === d
+                      ? "bg-primary text-white"
+                      : "text-zinc-500 dark:text-zinc-400"
+                  }`}
+                >
+                  {d === "illustrative" ? "Stitch" : "Classic"}
+                </button>
+              ))}
+            </div>
+          }
+        />
+      </SettingsGroup>
 
       {/* Preferences */}
       <SettingsGroup title="Preferences">

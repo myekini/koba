@@ -84,6 +84,12 @@
 }
 
 .dark {
+  /* Ink design (Stitch) dark palette: paper and ink swap, pastels deepen */
+  --color-paper: #131414;
+  --color-ink: #eceae4;
+  --color-blush: #46263b;
+  --color-mint: #1e3b2b;
+
   --background: oklch(0.135 0.006 15);
   --foreground: oklch(0.97 0.005 15);
   --card: oklch(0.205 0 0);
@@ -129,6 +135,16 @@
   }
 }
 
+/* "Ink" tokens for the Stitch illustrative design variant */
+@theme {
+  --color-ink: #1a1c1c;
+  --color-paper: #fbfbf9;
+  --color-sun: #ffce00;
+  --color-blush: #f8b4d9;
+  --color-mint: #b9e6c9;
+  --font-ink: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+}
+
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -136,6 +152,19 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+  /* Subtle graph-paper grid used by the illustrative design */
+  .bg-graph {
+    background-color: var(--color-paper);
+    background-image:
+      linear-gradient(to right, rgba(26, 28, 28, 0.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(26, 28, 28, 0.045) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .dark .bg-graph {
+    background-image:
+      linear-gradient(to right, rgba(236, 234, 228, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(236, 234, 228, 0.05) 1px, transparent 1px);
   }
 }
 

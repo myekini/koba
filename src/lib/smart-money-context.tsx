@@ -44,7 +44,10 @@ export interface SmartMoneyState {
     darkMode: boolean;
     autoSaveRule: { goalId: string; amount: number; day: number } | null;
   };
+  design: DesignVariant;
 }
+
+export type DesignVariant = "classic" | "illustrative";
 
 const now = () =>
   new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
@@ -74,6 +77,7 @@ const initialState: SmartMoneyState = {
   ],
   coachTyping: false,
   settings: { alerts: true, nudges: true, darkMode: false, autoSaveRule: null },
+  design: "classic",
 };
 
 // ---------------------------------------------------------------------------
@@ -89,7 +93,8 @@ type Action =
       amount: number;
       fromAccountId: string;
     }
-  | { type: "TOGGLE_SETTING"; key: "alerts" | "nudges" | "darkMode" };
+  | { type: "TOGGLE_SETTING"; key: "alerts" | "nudges" | "darkMode" }
+  | { type: "SET_DESIGN"; design: DesignVariant };
 
 function moveFromAccount(
   accounts: UBAAccount[],
@@ -430,6 +435,9 @@ function reducer(state: SmartMoneyState, action: Action): SmartMoneyState {
     case "CONTRIBUTE_TO_GOAL":
       return contribute(state, action.goalId, action.amount, action.fromAccountId);
 
+    case "SET_DESIGN":
+      return { ...state, design: action.design };
+
     case "TOGGLE_SETTING":
       return {
         ...state,
@@ -520,6 +528,7 @@ interface SmartMoneyContextValue {
   sendToCoach: (text: string) => void;
   contributeToGoal: (goalId: string, amount: number, fromAccountId: string) => void;
   toggleSetting: (key: "alerts" | "nudges" | "darkMode") => void;
+  setDesign: (design: DesignVariant) => void;
 }
 
 const SmartMoneyContext = createContext<SmartMoneyContextValue | null>(null);
@@ -544,9 +553,31 @@ export function SmartMoneyProvider({ children }: { children: React.ReactNode }) 
       contributeToGoal: (goalId, amount, fromAccountId) =>
         dispatch({ type: "CONTRIBUTE_TO_GOAL", goalId, amount, fromAccountId }),
       toggleSetting: (key) => dispatch({ type: "TOGGLE_SETTING", key }),
+      setDesign: (design) => {
+        dispatch({ type: "SET_DESIGN", design });
+        try {
+          localStorage.setItem("koba-design", design);
+        } catch {}
+      },
     }),
     [state]
   );
+
+  // Restore design preference after mount (URL param wins over localStorage)
+  // so the prerendered HTML always matches the first client render.
+  React.useEffect(() => {
+    const fromUrl = new URLSearchParams(window.location.search).get("design");
+    const stored = localStorage.getItem("koba-design");
+    const wanted =
+      fromUrl === "stitch" || fromUrl === "illustrative"
+        ? "illustrative"
+        : fromUrl === "classic"
+          ? "classic"
+          : stored === "illustrative"
+            ? "illustrative"
+            : null;
+    if (wanted) dispatch({ type: "SET_DESIGN", design: wanted });
+  }, []);
 
   return (
     <SmartMoneyContext.Provider value={value}>
