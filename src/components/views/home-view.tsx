@@ -66,7 +66,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
             alt=""
             className="pointer-events-none absolute -right-10 -top-12 h-48 brightness-0 invert opacity-[0.08]"
           />
-          <div className="relative space-y-5">
+          <div className="relative space-y-4">
             <div className="flex items-start justify-between">
               <div>
                 <div className="flex items-center gap-2">
@@ -91,23 +91,9 @@ export function HomeView({ onNavigate }: HomeViewProps) {
                 className="h-5 brightness-0 invert"
               />
             </div>
-
-            <div className="space-y-2">
-              {state.accounts.map((account) => (
-                <div
-                  key={account.id}
-                  className="flex items-center justify-between rounded-2xl bg-white/10 px-4 py-3"
-                >
-                  <div>
-                    <p className="text-sm font-medium">{account.name}</p>
-                    <p className="text-xs text-white/60">{account.number}</p>
-                  </div>
-                  <p className="text-sm font-semibold tabular-nums">
-                    {balanceVisible ? formatNaira(account.balance) : "₦ ••••"}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <p className="text-xs font-medium text-white/60">
+              {state.accounts.map((a) => a.name).join(" · ")}
+            </p>
           </div>
         </section>
 
